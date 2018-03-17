@@ -21,22 +21,15 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
-    def process_telephone_number(sending_telephone_number, receiving_telephone_number, telephones, number):
-        if sending_telephone_number not in telephones:
-            telephones.append(sending_telephone_number)
-            number += 1
-        if receiving_telephone_number not in telephones:
-            telephones.append(receiving_telephone_number)
-            number += 1
-        return telephones, number
-
-    all_telephones = []
-    numbers = 0
+    # set can remove different elements. It's a good choice here!
+    all_telephones = set()
     for text in texts:
-        all_telephones, numbers = process_telephone_number(text[0], text[1], all_telephones, numbers)
+        all_telephones.add(text[0])
+        all_telephones.add(text[1])
     for call in calls:
-        all_telephones, numbers = process_telephone_number(call[0], call[1], all_telephones, numbers)
-    print "There are {} different telephone numbers in the records.".format(numbers)
+        all_telephones.add(call[0])
+        all_telephones.add(call[1])
+    print("There are {} different telephone numbers in the records.".format(len(all_telephones)))
 
 """
 TASK 1: 

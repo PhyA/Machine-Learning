@@ -25,7 +25,7 @@ with open('calls.csv', 'r') as f:
     suffix_fixed_line = ")"
     prefix_of_mobile_number = ["7", "8", "9"]
     area_code_in_Bangalore = "080"
-    code_called_from_Bangalore = []
+    code_called_from_Bangalore = set()
     sum_of_calls_from_Bangalore = 0
     calls_from_Bangalore_to_Bangalore = 0
 
@@ -49,26 +49,25 @@ with open('calls.csv', 'r') as f:
             return telephone_number[0:4]
         return 0
 
+    # use set to remove the duplicate data, use sorted to sort the list.
     for call in calls:
         if is_telephone_number_in_Bangalore(call[0]):
             sum_of_calls_from_Bangalore += 1
             result = process_telephone_number(call[1])
-            if result and (result not in code_called_from_Bangalore):
-                code_called_from_Bangalore.append(result)
+            code_called_from_Bangalore.add(result)
             if is_telephone_number_in_Bangalore(result):
                 calls_from_Bangalore_to_Bangalore += 1
 
     code_called_from_Bangalore = sorted(code_called_from_Bangalore, reverse=False)
-    percentage = float(calls_from_Bangalore_to_Bangalore) / float(sum_of_calls_from_Bangalore) * 100
-    percentage = "{0:.2f}".format(percentage)
-    partA_message = "The numbers called by people in Bangalore have codes:"
-    partB_message = "{0}% percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore."\
+    percentage = float(calls_from_Bangalore_to_Bangalore) / float(sum_of_calls_from_Bangalore)
+    percentage = "{0:.2%}".format(percentage)
+    # join is a good method to combine element in String list
+    partA_message = "The numbers called by people in Bangalore have codes:\n" + "\n".join(code_called_from_Bangalore)
+    partB_message = "{0} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore."\
         .format(percentage)
-    for code in code_called_from_Bangalore:
-        partA_message += "\n{}".format(code)
 
-    print partA_message
-    print partB_message
+    print(partA_message)
+    print(partB_message)
 """
 TASK 3:
 (080) is the area code for fixed line telephones in Bangalore. 

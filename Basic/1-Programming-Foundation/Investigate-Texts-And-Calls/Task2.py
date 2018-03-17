@@ -21,30 +21,25 @@ with open('calls.csv', 'r') as f:
     calls = list(reader)
 
 
-    def get_calling_time(telephone_number, all_time_dictionary, calling_time, longest_time, telephone_number_of_longest_time):
+    def get_calling_time(telephone_number, all_time_dictionary, calling_time):
         if all_time_dictionary.get(telephone_number) is None:
             all_time_dictionary[telephone_number] = calling_time
         else:
             all_time_dictionary[telephone_number] += calling_time
-            if all_time_dictionary[telephone_number] > longest_time:
-                longest_time = all_time_dictionary[telephone_number]
-                telephone_number_of_longest_time = telephone_number
-        return all_time_dictionary, longest_time, telephone_number_of_longest_time
+        return all_time_dictionary
 
-    total_time = 0
     telephone_time = {}
-    longest_time = 0
-    longest_telephone_number = 0
     for call in calls:
         call_time = int(call[3])
-        telephone_time, total_time, longest_telephone_number = \
-            get_calling_time(call[0], telephone_time, call_time, total_time, longest_telephone_number)
+        telephone_time = get_calling_time(call[0], telephone_time, call_time)
+        telephone_time = get_calling_time(call[1], telephone_time, call_time)
 
-        telephone_time, total_time, longest_telephone_number = \
-            get_calling_time(call[1], telephone_time, call_time, total_time, longest_telephone_number)
-
-    print "{} spent the longest time, {} seconds, on the phone during September 2016.".\
-        format(longest_telephone_number, total_time)
+    # sort the telephone_time dictionary according to value, return a tuple list, the first one is what we want
+    num_time_list = sorted(telephone_time.items(), key=lambda d: d[1], reverse=True)
+    longest_telephone_number = num_time_list[0][0]
+    total_time = num_time_list[0][1]
+    print("{0} spent the longest time, {1} seconds, on the phone during September 2016."
+          .format(longest_telephone_number, total_time))
 
 """
 TASK 2: Which telephone number spent the longest time on the phone

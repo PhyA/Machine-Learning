@@ -21,14 +21,13 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
-    callers = []
+    callers = set()
     not_telemarketer = set()
-    possible_telemarketer = set()
+
 
     # numbers of receiving calls are not telemarketers
     for call in calls:
-        caller = call[0]
-        callers.append(caller)
+        callers.add(call[0])
         not_telemarketer.add(call[1])
 
     # numbers of sending text or receiving texts are not telemarketers
@@ -36,15 +35,10 @@ with open('calls.csv', 'r') as f:
         not_telemarketer.add(text[0])
         not_telemarketer.add(text[1])
 
-    for number in callers:
-        if number not in not_telemarketer:
-            possible_telemarketer.add(number)
-
+    possible_telemarketer = callers - not_telemarketer
     possible_telemarketer = sorted(possible_telemarketer, reverse=False)
-    message = "These numbers could be telemarketers: "
-    for number in possible_telemarketer:
-        message += "\n{0}".format(number)
-    print message
+    message = "These numbers could be telemarketers:\n" + "\n".join(possible_telemarketer)
+    print(message)
 
 """
 TASK 4:
