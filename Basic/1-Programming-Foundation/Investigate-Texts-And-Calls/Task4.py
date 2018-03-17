@@ -21,7 +21,6 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
-if __name__ == '__main__':
     prefix_of_telemarketer = "140"
     possible_telemarketer = []
     not_telemarketer = []

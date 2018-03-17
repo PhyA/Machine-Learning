@@ -21,7 +21,6 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
-if __name__ == '__main__':
     prefix_fixed_line = "("
     suffix_fixed_line = ")"
     prefix_of_mobile_number = ["7", "8", "9"]
