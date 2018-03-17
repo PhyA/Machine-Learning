@@ -40,6 +40,7 @@ with open('calls.csv', 'r') as f:
         if number not in not_telemarketer:
             possible_telemarketer.add(number)
 
+    possible_telemarketer = sorted(possible_telemarketer, reverse=False)
     message = "These numbers could be telemarketers: "
     for number in possible_telemarketer:
         message += "\n{0}".format(number)
