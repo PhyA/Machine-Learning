@@ -36,7 +36,7 @@ with open('calls.csv', 'r') as f:
         all_telephones, numbers = process_telephone_number(text[0], text[1], all_telephones, numbers)
     for call in calls:
         all_telephones, numbers = process_telephone_number(call[0], call[1], all_telephones, numbers)
-    print "There are <{}> different telephone numbers in the records.".format(numbers)
+    print "There are {} different telephone numbers in the records.".format(numbers)
 
 """
 TASK 1: 

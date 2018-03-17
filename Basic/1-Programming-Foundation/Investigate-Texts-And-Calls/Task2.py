@@ -43,7 +43,7 @@ with open('calls.csv', 'r') as f:
         telephone_time, total_time, longest_telephone_number = \
             get_calling_time(call[1], telephone_time, call_time, total_time, longest_telephone_number)
 
-    print "<{}> spent the longest time, <{}> seconds, on the phone during September 2016.".\
+    print "{} spent the longest time, {} seconds, on the phone during September 2016.".\
         format(longest_telephone_number, total_time)
 
 """

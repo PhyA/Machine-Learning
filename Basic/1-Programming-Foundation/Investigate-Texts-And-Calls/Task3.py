@@ -62,10 +62,10 @@ with open('calls.csv', 'r') as f:
     percentage = float(calls_from_Bangalore_to_Bangalore) / float(sum_of_calls_from_Bangalore) * 100
     percentage = "{0:.2f}".format(percentage)
     partA_message = "The numbers called by people in Bangalore have codes:"
-    partB_message = "<{0}%> percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore."\
+    partB_message = "{0}% percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore."\
         .format(percentage)
     for code in code_called_from_Bangalore:
-        partA_message += "\n<{}>".format(code)
+        partA_message += "\n{}".format(code)
 
     print partA_message
     print partB_message
