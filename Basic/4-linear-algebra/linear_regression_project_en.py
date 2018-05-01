@@ -5,7 +5,7 @@
 # 
 # ## 1.1 Create a 4*4 identity matrix
 
-# In[2]:
+# In[1]:
 
 
 #This project is designed to get familiar with python list and linear algebra
@@ -28,7 +28,7 @@ I = [[1,0,0,0],
 
 # ## 1.2 get the width and height of a matrix. 
 
-# In[3]:
+# In[2]:
 
 
 #TODO Get the height and weight of a matrix.
@@ -40,7 +40,7 @@ def shape(M):
     return height,weight
 
 
-# In[4]:
+# In[3]:
 
 
 # run following code to test your shape function
@@ -49,7 +49,7 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 
 # ## 1.3 round all elements in M to certain decimal points
 
-# In[5]:
+# In[4]:
 
 
 # TODO in-place operation, no return value
@@ -60,7 +60,7 @@ def matxRound(M, decPts=4):
             M[row][col] = round(value, decPts)
 
 
-# In[6]:
+# In[5]:
 
 
 # run following code to test your matxRound function
@@ -69,7 +69,7 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 
 # ## 1.4 compute transpose of M
 
-# In[7]:
+# In[6]:
 
 
 #TODO compute transpose of M
@@ -83,7 +83,7 @@ def transpose(M):
     return result
 
 
-# In[8]:
+# In[7]:
 
 
 # run following code to test your transpose function
@@ -92,7 +92,7 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 
 # ## 1.5 compute AB. return None if the dimensions don't match
 
-# In[9]:
+# In[8]:
 
 
 #TODO compute matrix multiplication AB, return None if the dimensions don't match
@@ -118,7 +118,7 @@ def matxMultiply(A, B):
     return result
 
 
-# In[10]:
+# In[9]:
 
 
 # run following code to test your matxMultiply function
@@ -152,7 +152,7 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 #     ...    & ... & ... & ...& ...\\
 #     a_{n1}    & a_{n2} & ... & a_{nn} & b_{n} \end{bmatrix}$
 
-# In[11]:
+# In[10]:
 
 
 #TODO construct the augment matrix of matrix A and column vector b, assuming A and b have same number of rows
@@ -167,7 +167,7 @@ def augmentMatrix(A, b):
     return result
 
 
-# In[12]:
+# In[11]:
 
 
 # run following code to test your augmentMatrix function
@@ -179,7 +179,7 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 # - scale a row
 # - add a scaled row to another
 
-# In[13]:
+# In[12]:
 
 
 # TODO r1 <---> r2
@@ -194,14 +194,14 @@ def swapRows(M, r1, r2):
             M[r2][col] = temp
 
 
-# In[14]:
+# In[13]:
 
 
 # run following code to test your swapRows function
 get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test_swapRows')
 
 
-# In[15]:
+# In[14]:
 
 
 # TODO r1 <--- r1 * scale
@@ -217,14 +217,14 @@ def scaleRow(M, r, scale):
         break
 
 
-# In[16]:
+# In[15]:
 
 
 # run following code to test your scaleRow function
 get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test_scaleRow')
 
 
-# In[17]:
+# In[16]:
 
 
 # TODO r1 <--- r1 + r2*scale
@@ -238,7 +238,7 @@ def addScaledRow(M, r1, r2, scale):
         break
 
 
-# In[18]:
+# In[17]:
 
 
 # run following code to test your addScaledRow function
@@ -269,7 +269,7 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 # ### Remark：
 # We don't use the standard algorithm first transfering Ab to row echelon form and then to reduced row echelon form.  Instead, we arrives directly at reduced row echelon form. If you are familiar with the stardard way, try prove to yourself that they are equivalent. 
 
-# In[19]:
+# In[18]:
 
 
 #TODO implement gaussian jordan method to solve Ax = b
@@ -324,7 +324,7 @@ def gj_Solve(A, b, decPts=4, epsilon = 1.0e-16):
     return result
 
 
-# In[20]:
+# In[19]:
 
 
 # run following code to test your addScaledRow function
@@ -347,32 +347,35 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 # - consider the determinate of Y and A 
 # - consider certain column is the linear combination of other columns
 
-# TODO Please use latex 
+# # TODO Please use latex 
 # 
 # ### Proof：  
 # 
-# For square matrix, A = 
-# $
+# For square matrix, $A = 
 # \begin{bmatrix}
 # I & X\\
 # Z & Y\\
 # \end{bmatrix}
 # $
-# , assume I is m $\times$ m identity matrix, X is m $\times$ n matrix, and A is (m + n) $\times$ (m + n) matrix. As the first column of Y is zero and Z is all zero, we can get the (m+1)th column of A, A[:][m] is the combination of former m columns, i.e., 
+# , assume I is $m$ $\times$ $m$ identity matrix, X is $m$ $\times$ $n$ matrix, and A is $(m + n)$ $\times$ $(m + n)$ matrix. As the first column of $Y$ is zero and $Z$ is all zero, we can get the $(m+1)$th column of $A$, $A[:][m]$ is the combination of former m columns, i.e., 
+# $$
 # \begin{eqnarray*}
 # A[:][m] = \sum_{j=0}^{m-1} A[j][m] \cdot A[:][j]
 # \end{eqnarray*}
-# Considering solving the inverse matrix of A, for
+# $$
+# Considering solving the inverse matrix of $A$, for
 # $[A \mid I] = 
 # \begin{bmatrix}
 # I & X & I \\
 # Z & Y & I \\
 # \end{bmatrix}$
 # , we can make the mth column is all zero by Guass-jordan method:
+# $
 # \begin{eqnarray*}
 # A[:][m] \leftarrow \sum_{j=0}^{m-1} -A[j][m] \cdot A[:][j] + A[:][m]
 # \end{eqnarray*}
-# So the former m+n columns of [A $\mid$ I] cannot be converted to identity matrix. Therefore, it doesn't exist inverse matrix for A. So A is singular matrix.
+# $
+# So the former $m+n$ columns of [$A$ $\mid$ $I$] cannot be converted to identity matrix. Therefore, it doesn't exist inverse matrix for $A$. So $A$ is singular matrix.
 
 # ---
 # 
@@ -425,28 +428,33 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 
 # TODO Please use latex
 # 
-# TODO Proof：
+# ### Proof：
 # 
 # $$
 # E(m, b) = \sum_{i=1}^{n}[(y_i - b)^2 - 2(y_i - b)mx_i + m^2x_i^2]
 # $$
 # so we can get
+# $$
 # \begin{eqnarray*}
 # \frac{\partial E}{\partial m} &=& \sum_{i=1}^{n}[ - 2(y_i - b)x_i + 2mx_i^2] \\
 # &=& \sum_{i=1}^{n}-2x_i(y_i - mx_i -b)
 # \end{eqnarray*}
+# $$
 # 
 # And also,
 # $$
 # E(m, b) = \sum_{i=1}^{n}[(y_i - mx_i)^2 - 2(y_i - mx_i)b + b^2]
 # $$
 # so we can get:
+# $$
 # \begin{eqnarray*}
 # \frac{\partial E}{\partial b} &=& \sum_{i=1}^{n}[ - 2(y_i - mx_i) + 2b] \\
 # &=& \sum_{i=1}^{n}-2(y_i - mx_i -b)
 # \end{eqnarray*}
+# $$
 # 
 # On the other side:
+# $$
 # \begin{eqnarray*}
 # X^TXh &=& 
 # \begin{bmatrix}
@@ -481,6 +489,7 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 # \sum\limits_{i=1}^{n}(mx_i + b) \\
 # \end{bmatrix}
 # \end{eqnarray*}
+# $$
 # 
 # $$
 # X^TY =
@@ -557,7 +566,7 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 # ## 3.2  Linear Regression
 # ### Solve equation $X^TXh = X^TY $ to compute the best parameter for linear regression.
 
-# In[21]:
+# In[20]:
 
 
 #TODO implement linear regression 
@@ -587,7 +596,7 @@ def linearRegression(points):
 
 # ## 3.3 Test your linear regression implementation
 
-# In[35]:
+# In[23]:
 
 
 import random
@@ -600,39 +609,9 @@ x_list = []
 y_list = []
 for i in range(20):
     x_list.append(round(random.gauss(0, 10), 4))
-    y_list.append(m_truth * x_list[-1] + b_truth + random.gauss(0, 1))
-    
-#TODO Compute m and b and compare with ground truth
-m_compute, b_compute = linearRegression((x_list, y_list))
-print("m_truth={}, b_truth={}, m_compute={}, b_compute={}"
-      .format(m_truth, b_truth, round(m_compute, 4), round(b_compute, 4)))
-
-# calculate mean square error
-n = len(x_list)
-sum = 0.0
-for xi, yi in zip(x_list, y_list):
-    sum += (yi - m_compute*xi - b_compute) ** 2
-print("Mean Square Error is: {}".format(sum / n))
-
-
-# I test it in another way.
-
-# In[25]:
-
-
-import random
-# Construct the linear function
-m_truth = round(random.gauss(0, 10), 4)
-b_truth = round(random.gauss(0, 10), 4)
-    
-# Construct points with gaussian noise
-x_list = []
-y_list = []
-for i in range(20):
-    x_list.append(round(random.gauss(0, 10), 4))
     y_list.append(m_truth * x_list[-1] + b_truth)
     
-# Compute m and b and compare with ground truth
+#TODO Compute m and b and compare with ground truth
 m_compute, b_compute = linearRegression((x_list, y_list))
     
 if not (abs(m_compute - m_truth) < 1e-10 and abs(b_compute - b_truth) < 1e-10):
