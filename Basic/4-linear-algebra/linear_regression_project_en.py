@@ -350,32 +350,7 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 # # TODO Please use latex 
 # 
 # ### Proof：  
-# 
-# For square matrix, $A = 
-# \begin{bmatrix}
-# I & X\\
-# Z & Y\\
-# \end{bmatrix}
-# $
-# , assume I is $m$ $\times$ $m$ identity matrix, X is $m$ $\times$ $n$ matrix, and A is $(m + n)$ $\times$ $(m + n)$ matrix. As the first column of $Y$ is zero and $Z$ is all zero, we can get the $(m+1)$th column of $A$, $A[:][m]$ is the combination of former m columns, i.e., 
-# $$
-# \begin{eqnarray*}
-# A[:][m] = \sum_{j=0}^{m-1} A[j][m] \cdot A[:][j]
-# \end{eqnarray*}
-# $$
-# Considering solving the inverse matrix of $A$, for
-# $[A \mid I] = 
-# \begin{bmatrix}
-# I & X & I \\
-# Z & Y & I \\
-# \end{bmatrix}$
-# , we can make the mth column is all zero by Guass-jordan method:
-# $
-# \begin{eqnarray*}
-# A[:][m] \leftarrow \sum_{j=0}^{m-1} -A[j][m] \cdot A[:][j] + A[:][m]
-# \end{eqnarray*}
-# $
-# So the former $m+n$ columns of [$A$ $\mid$ $I$] cannot be converted to identity matrix. Therefore, it doesn't exist inverse matrix for $A$. So $A$ is singular matrix.
+# Please see the proof.pdf
 
 # ---
 # 
@@ -429,99 +404,7 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 # TODO Please use latex
 # 
 # ### Proof：
-# 
-# $$
-# E(m, b) = \sum_{i=1}^{n}[(y_i - b)^2 - 2(y_i - b)mx_i + m^2x_i^2]
-# $$
-# so we can get
-# $$
-# \begin{eqnarray*}
-# \frac{\partial E}{\partial m} &=& \sum_{i=1}^{n}[ - 2(y_i - b)x_i + 2mx_i^2] \\
-# &=& \sum_{i=1}^{n}-2x_i(y_i - mx_i -b)
-# \end{eqnarray*}
-# $$
-# 
-# And also,
-# $$
-# E(m, b) = \sum_{i=1}^{n}[(y_i - mx_i)^2 - 2(y_i - mx_i)b + b^2]
-# $$
-# so we can get:
-# $$
-# \begin{eqnarray*}
-# \frac{\partial E}{\partial b} &=& \sum_{i=1}^{n}[ - 2(y_i - mx_i) + 2b] \\
-# &=& \sum_{i=1}^{n}-2(y_i - mx_i -b)
-# \end{eqnarray*}
-# $$
-# 
-# On the other side:
-# $$
-# \begin{eqnarray*}
-# X^TXh &=& 
-# \begin{bmatrix}
-# x_1 & x_2 & ... & x_n \\
-# 1  & 1 &  ...  & 1  \\
-# \end{bmatrix}
-# \cdot
-# \begin{bmatrix}
-# x_1 & 1 \\
-# x_2 & 1 \\
-# ... & ... \\
-# x_n & 1 \\
-# \end{bmatrix}
-# \cdot
-# \begin{bmatrix}
-# m \\
-# b \\
-# \end{bmatrix} \\
-# &=&
-# \begin{bmatrix}
-# \sum\limits_{i=1}^{n}x_i^2  & \sum_{i=1}^{n}x_i \\
-# \sum\limits_{i=1}^{n}x_i & \sum_{i=1}^{n}1 \\
-# \end{bmatrix}
-# \cdot
-# \begin{bmatrix}
-# m \\
-# b \\
-# \end{bmatrix} \\
-# &=&
-# \begin{bmatrix}
-# \sum\limits_{i=1}^{n}(mx_i^2  + bx_i) \\
-# \sum\limits_{i=1}^{n}(mx_i + b) \\
-# \end{bmatrix}
-# \end{eqnarray*}
-# $$
-# 
-# $$
-# X^TY =
-# \begin{bmatrix}
-# x_1 & x_2 & ... & x_n \\
-# 1 & 1 & ... & 1 \\
-# \end{bmatrix}
-# \cdot
-# \begin{bmatrix}
-# y_1 \\
-# y_2 \\
-# ... \\
-# y_3
-# \end{bmatrix}
-# = \begin{bmatrix}
-# \sum\limits_{i=1}^{n}x_iy_i \\
-# \sum\limits_{i=1}^{n}y_i \\
-# \end{bmatrix}
-# $$
-# 
-# Therefore,
-# $$
-# 2X^TXh -2X^TY = 
-# \begin{bmatrix}
-# \sum\limits_{i=1}^{n}(2mx_i^2 + 2bx_i - 2x_iy_i) \\
-# \sum\limits_{i=1}^{n}(2mx_i + 2b -2y_i)
-# \end{bmatrix}
-# = \begin{bmatrix}
-# \frac{\partial E}{\partial m} \\
-# \frac{\partial E}{\partial b}
-# \end{bmatrix}
-# $$
+# Please see the proof.pdf
 
 # ## 3.1 Compute the gradient of loss function with respect to parameters 
 # ## (Choose one between two 3.1 questions)
