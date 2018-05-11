@@ -28,7 +28,7 @@ I = [[1,0,0,0],
 
 # ## 1.2 get the width and height of a matrix. 
 
-# In[2]:
+# In[25]:
 
 
 #TODO Get the height and weight of a matrix.
@@ -40,7 +40,7 @@ def shape(M):
     return height,weight
 
 
-# In[3]:
+# In[26]:
 
 
 # run following code to test your shape function
@@ -69,21 +69,15 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 
 # ## 1.4 compute transpose of M
 
-# In[6]:
+# In[20]:
 
 
 #TODO compute transpose of M
 def transpose(M):
-    result = []
-    for row, rowList in enumerate(M):
-        for col, value in enumerate(rowList):
-            if row == 0:
-                result.append([])
-            result[col].append(value)
-    return result
+    return list(map(list, zip(*M)))
 
 
-# In[7]:
+# In[21]:
 
 
 # run following code to test your transpose function
@@ -92,7 +86,7 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 
 # ## 1.5 compute AB. return None if the dimensions don't match
 
-# In[8]:
+# In[23]:
 
 
 #TODO compute matrix multiplication AB, return None if the dimensions don't match
@@ -104,21 +98,11 @@ def matxMultiply(A, B):
         
     if weight_A != height_B:
         raise ValueError(DIMENSIONS_NOT_MATCH)
-
-    result = []
-    for k in range(weight_B):
-        for row, rowList in enumerate(A):
-            if k == 0:
-                result.append([])
-            value = 0.0
-            for col in range(weight_A):
-                value += A[row][col] * B[col][k]
-            result[row].append(value)
-
-    return result
+    
+    return [[sum((a*b) for a, b in zip(row, col)) for col in zip(*B)] for row in A]
 
 
-# In[9]:
+# In[24]:
 
 
 # run following code to test your matxMultiply function
@@ -152,22 +136,15 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 #     ...    & ... & ... & ...& ...\\
 #     a_{n1}    & a_{n2} & ... & a_{nn} & b_{n} \end{bmatrix}$
 
-# In[10]:
+# In[1]:
 
 
 #TODO construct the augment matrix of matrix A and column vector b, assuming A and b have same number of rows
 def augmentMatrix(A, b):
-    height_A, weight_A = shape(A)
-    result = []
-    for row in range(height_A):
-        result.append([])
-        for colA in range(weight_A):
-            result[row].append(A[row][colA])
-        result[row].append(b[row][0])
-    return result
+    return [ra + rb for ra, rb in zip(A, b)]
 
 
-# In[11]:
+# In[2]:
 
 
 # run following code to test your augmentMatrix function
@@ -179,66 +156,50 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 # - scale a row
 # - add a scaled row to another
 
-# In[12]:
+# In[3]:
 
 
 # TODO r1 <---> r2
 # TODO in-place operation, no return value
 def swapRows(M, r1, r2):
-    for row, rowList in enumerate(M):
-        if row != r1:
-            continue
-        for col, value in enumerate(rowList):
-            temp = M[r1][col]
-            M[r1][col] = M[r2][col]
-            M[r2][col] = temp
+    M[r1], M[r2] = M[r2], M[r1]
 
 
-# In[13]:
+# In[4]:
 
 
 # run following code to test your swapRows function
 get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test_swapRows')
 
 
-# In[14]:
+# In[7]:
 
 
 # TODO r1 <--- r1 * scale
 # TODO in-place operation, no return value
 def scaleRow(M, r, scale):
     if scale == 0:
-        raise ValueError("Wrong answer")    
-    for row, rowList in enumerate(M):
-        if row != r:
-            continue
-        for col, value in enumerate(rowList):
-            M[row][col] *= scale
-        break
+        raise ValueError
+    M[r] = [value * scale for value in M[r]]
 
 
-# In[15]:
+# In[8]:
 
 
 # run following code to test your scaleRow function
 get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test_scaleRow')
 
 
-# In[16]:
+# In[9]:
 
 
 # TODO r1 <--- r1 + r2*scale
 # TODO in-place operation, no return value
 def addScaledRow(M, r1, r2, scale):
-    for row, rowList in enumerate(M):
-        if row != r1:
-            continue
-        for col, value in enumerate(rowList):
-            M[r1][col] += M[r2][col] * scale
-        break
+    M[r1] = [e1 + e2 * scale for e1, e2 in zip(M[r1], M[r2])]
 
 
-# In[17]:
+# In[10]:
 
 
 # run following code to test your addScaledRow function
@@ -269,7 +230,7 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 # ### Remark：
 # We don't use the standard algorithm first transfering Ab to row echelon form and then to reduced row echelon form.  Instead, we arrives directly at reduced row echelon form. If you are familiar with the stardard way, try prove to yourself that they are equivalent. 
 
-# In[18]:
+# In[11]:
 
 
 #TODO implement gaussian jordan method to solve Ax = b
@@ -324,7 +285,7 @@ def gj_Solve(A, b, decPts=4, epsilon = 1.0e-16):
     return result
 
 
-# In[19]:
+# In[12]:
 
 
 # run following code to test your addScaledRow function
@@ -449,7 +410,7 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 # ## 3.2  Linear Regression
 # ### Solve equation $X^TXh = X^TY $ to compute the best parameter for linear regression.
 
-# In[20]:
+# In[18]:
 
 
 #TODO implement linear regression 
@@ -458,28 +419,20 @@ points: list of (x,y) tuple
 return m and b
 '''
 def linearRegression(points):
-    C1 = 0.0; C2 = 0.0
-    C4 = len(points[0])
-    k1 = 0.0; k2 = 0.0
-    x_list = points[0]
-    y_list = points[1]
+    x = points[0]
+    y = points[1]
+    x_T = transpose(x)
+    x_T_x = matxMultiply(x_T, x)
+    x_T_y = matxMultiply(x_T, y)
 
-    for xi, yi in zip(x_list, y_list):
-        C1 += xi ** 2
-        C2 += xi
-        k1 += xi * yi
-        k2 += yi
-
-    denominator = C1 * C4 - C2 ** 2
-    m_numerator = C4 * k1 - C2 * k2
-    b_numerator = - C2 * k1 + C1 * k2
-
-    return m_numerator / denominator, b_numerator /  denominator
+    result = gj_Solve(x_T_x, x_T_y)
+    m_compute, b_compute = result[0][0], result[1][0]
+    return m_compute, b_compute
 
 
 # ## 3.3 Test your linear regression implementation
 
-# In[23]:
+# In[27]:
 
 
 import random
@@ -488,16 +441,20 @@ m_truth = round(random.gauss(0, 10), 4)
 b_truth = round(random.gauss(0, 10), 4)
     
 #TODO Construct points with gaussian noise
-x_list = []
-y_list = []
+x = []
+y = []
 for i in range(20):
-    x_list.append(round(random.gauss(0, 10), 4))
-    y_list.append(m_truth * x_list[-1] + b_truth)
+    x.append([])
+    x[i].append(round(random.gauss(0, 10), 4))
+    x[i].append(1)
+
+    y.append([])
+    y[i].append(m_truth * x[-1][0] + b_truth + random.gauss(0, 1))
     
 #TODO Compute m and b and compare with ground truth
-m_compute, b_compute = linearRegression((x_list, y_list))
+m_compute, b_compute = linearRegression((x, y))
     
-if not (abs(m_compute - m_truth) < 1e-10 and abs(b_compute - b_truth) < 1e-10):
+if not (abs(m_compute - m_truth) / m_truth < 2e-2 and abs(b_compute - b_truth) / b_truth < 2e-2):
     raise ValueError("m_truth={}, b_truth={} but got m_compute={}, b_compute={}".format(m_truth, b_truth, m_compute, b_compute))
 print("OK")
 
