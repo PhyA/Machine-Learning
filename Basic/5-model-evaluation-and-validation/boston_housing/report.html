@@ -11802,7 +11802,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import libraries necessary for this project</span>
@@ -11844,20 +11844,6 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/yangzhenxiong/anaconda3/lib/python3.6/site-packages/sklearn/cross_validation.py:41: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
-  &#34;This module will be removed in 0.20.&#34;, DeprecationWarning)
-/Users/yangzhenxiong/anaconda3/lib/python3.6/site-packages/sklearn/learning_curve.py:22: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the functions are moved. This module will be removed in 0.20
-  DeprecationWarning)
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -11890,31 +11876,31 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Minimum price of the data</span>
-<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Maximum price of the data</span>
-<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Mean price of the data</span>
-<span class="n">mean_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mean_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Median price of the data</span>
-<span class="n">median_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">median_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Standard deviation of prices of the data</span>
-<span class="n">std_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">std_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># Show the calculated statistics</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Statistics for Boston housing dataset:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Minimum price: $</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">minimum_price</span><span class="p">))</span> 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Maximum price: $</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">maximum_price</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean price: $</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_price</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean price: $</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_price</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Median price $</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">median_price</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Standard deviation of prices: $</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">std_price</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Standard deviation of prices: $</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">std_price</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -11935,9 +11921,9 @@ div#notebook {
 
 Minimum price: $105000.0
 Maximum price: $1024800.0
-Mean price: $454342.9447852761
+Mean price: $454342.94
 Median price $438900.0
-Standard deviation of prices: $165340.27765266786
+Standard deviation of prices: $165171.13
 </pre>
 </div>
 </div>
@@ -11972,9 +11958,9 @@ Standard deviation of prices: $165340.27765266786
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong> 
-I guess a higher 'RM' value home would have a higher 'MEDV' value.<br>
-A neighborhood that has a higher 'LSTAT' value would worth less than a neighborhood that has a lower 'LSTAT' value.<br>
-Increasing the 'PTRATIO' value would increse the 'MEDV' value.</p>
+I guess a higher 'RM' value home would have a higher 'MEDV' value. Usually, a house with more rooms means larger size. It should cost more.</p>
+<p>A neighborhood that has a higher 'LSTAT' value would worth less than a neighborhood that has a lower 'LSTAT' value.  When this percentage is higher, there may be more poor people with low income. So homeowners have to sell their houses in low price.</p>
+<p>Increasing the 'PTRATIO' value would increase the 'MEDV' value. With more students, it may signifies the education quality is higher. Therefore more people come to this area for getting high-quality education and business, driving up the housing prices.</p>
 
 </div>
 </div>
@@ -12753,7 +12739,8 @@ Range in prices: $73,357.39
 <p><strong>Answer: </strong> I think the constructed model should not be used in a real-world setting.</p>
 <p>For inflation, CPI is <a href="http://www.usinflationcalculator.com/inflation/consumer-price-index-and-annual-percent-changes-from-1913-to-2008/">average 65.2 in 1978 and 250.546 in Apr 2018</a>. That means \$100 in 1978 is \$100*250.546/65.2 = \$384.27 today. So the price is 1978 cannot be used today.</p>
 <p>To describe a home, above factors are not enough. I think it needs home size(square meters) instead of just number of rooms, local average income instead of Neighborhood poverty level, local population instead of Student-teacher ratio of nearby schools. Also there are many factors to affect the housing price, including quality of appliance, the location in a city that whether is a school district. For example, the housing price is more expensive in Beijing than that in Wuhan. For houses in Beijing, it costs more in Third Ring Road than that in Sixth Ring Road as much as two times. If there are some schools or universities nearly, the price is much higer. The price in different cities, even different districts in a city varies greatly.</p>
-<p>So based on the characteristics above, it is not accuracy in real-world.</p>
+<p>Therefore, inflation is so important that \$100 in 1978 amounts to \$384.27 today. The price increases more than three times. The features present in the data are <em>not</em> sufficient to describe a home. I think more detail factors should be considered, including quality of appliances, the size of a house, the location of the city and the area in this city, the population, and so on. The model is not robust enough to make consistent predictions. There are much variance in this model and we need to consider more factors. Data collected in an urban city like Boston would not be applicable in a rural city. Different cites have different population, economic level, education level. The housing prices also are different. The characteristics of neighborhood can affect the pricing. If all the neighborhood are rich, the housing price may be high. But it is not the only factor.</p>
+<p>In conclusion, based on the characteristics above, it is not accuracy in real-world.</p>
 
 </div>
 </div>
