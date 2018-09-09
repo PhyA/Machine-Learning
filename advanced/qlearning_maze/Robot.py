@@ -19,7 +19,7 @@ class Robot(object):
 
         self.epsilon0 = epsilon0
         self.epsilon = epsilon0
-        self.t = 1.05      # I use this value to decay the epsilon
+        self.t = 0.99      # I use this value to decay the epsilon
 
         self.Qtable = {}
         self.reset()
@@ -49,7 +49,7 @@ class Robot(object):
             self.epsilon = 0
         else:
             # TODO 2. Update parameters when learning
-            self.epsilon /= self.t
+            self.epsilon *= self.t
 
         return self.epsilon
 
@@ -74,7 +74,7 @@ class Robot(object):
         if state not in self.Qtable.keys():
             self.Qtable[state] = {}
             for action in self.valid_actions:
-                self.Qtable[state][action] = 0
+                self.Qtable[state][action] = 0.
 
     def choose_action(self):
         """
@@ -91,7 +91,6 @@ class Robot(object):
                 return np.random.choice(self.valid_actions)
             else:
                 # TODO 7. Return action with highest q value
-                self.create_Qtable_line(self.state)     # to prevent the state in not in Qtable
                 return max(self.Qtable[self.state], key=self.Qtable[self.state].get)
         elif self.testing:
             # TODO 7. choose action with highest q value
@@ -107,15 +106,14 @@ class Robot(object):
         """
         if self.learning:
             # TODO 8. When learning, update the q table according to the given rules
-            prob = np.ones(len(self.valid_actions)) * self.epsilon / len(self.valid_actions)
-            prob[np.argmax(list(self.Qtable[next_state].values()))] = 1 - self.epsilon + self.epsilon / len(self.valid_actions)
-            next_value = np.dot(prob, list(self.Qtable[next_state].values()))
+            next_action = max(self.Qtable[next_state], key=self.Qtable[self.state].get)
+            next_value = self.Qtable[next_state][next_action]
             self.Qtable[self.state][action] = self.Qtable[self.state][action] + \
                 self.alpha * (r + self.gamma * next_value - self.Qtable[self.state][action])
 
     def update(self):
         """
-        Describle the procedure what to do when update the robot.
+        Describe the procedure what to do when update the robot.
         Called every time in every epoch in training or testing.
         Return current action and reward.
         """
@@ -133,4 +131,3 @@ class Robot(object):
             self.update_parameter() # update parameters
 
         return action, reward
-
