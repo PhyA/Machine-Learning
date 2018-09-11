@@ -71,10 +71,7 @@ class Robot(object):
         # Qtable[state] ={'u':xx, 'd':xx, ...}
         # If Qtable[state] already exits, then do
         # not change it.
-        if state not in self.Qtable.keys():
-            self.Qtable[state] = {}
-            for action in self.valid_actions:
-                self.Qtable[state][action] = 0.
+        self.Qtable.setdefault(state, {a: 0. for a in self.valid_actions})
 
     def choose_action(self):
         """
@@ -83,7 +80,7 @@ class Robot(object):
         def is_random_exploration():
             # TODO 5. Return whether do random choice
             # hint: generate a random number, and compare it with epsilon
-            return np.random.choice([True, False], p=[self.epsilon, 1 - self.epsilon])
+            return random.random() < self.epsilon
 
         if self.learning:
             if is_random_exploration():
@@ -106,8 +103,7 @@ class Robot(object):
         """
         if self.learning:
             # TODO 8. When learning, update the q table according to the given rules
-            next_action = max(self.Qtable[next_state], key=self.Qtable[self.state].get)
-            next_value = self.Qtable[next_state][next_action]
+            next_value = max(self.Qtable.values())
             self.Qtable[self.state][action] = self.Qtable[self.state][action] + \
                 self.alpha * (r + self.gamma * next_value - self.Qtable[self.state][action])
 
