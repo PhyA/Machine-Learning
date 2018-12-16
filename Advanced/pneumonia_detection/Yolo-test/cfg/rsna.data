@@ -1,6 +1,0 @@
-classes = 1
-train = /home/young/Documents/Yolo-test/metadata/train.txt
-valid = /home/young/Documents/Yolo-test/metadata/valid.txt
-names = /home/young/Documents/Yolo-test/cfg/rsna.names
-backup = /home/young/Documents/Yolo-test/backup
-    
