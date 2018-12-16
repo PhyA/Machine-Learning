@@ -1,0 +1,9 @@
+Total BFLOPS 395.602 
+
+ seen 64 
+detections_count = 2313, unique_truth_count = 929  
+ rank = 0 of ranks = 2313  rank = 100 of ranks = 2313  rank = 200 of ranks = 2313  rank = 300 of ranks = 2313  rank = 400 of ranks = 2313  rank = 500 of ranks = 2313  rank = 600 of ranks = 2313  rank = 700 of ranks = 2313  rank = 800 of ranks = 2313  rank = 900 of ranks = 2313  rank = 1000 of ranks = 2313  rank = 1100 of ranks = 2313  rank = 1200 of ranks = 2313  rank = 1300 of ranks = 2313  rank = 1400 of ranks = 2313  rank = 1500 of ranks = 2313  rank = 1600 of ranks = 2313  rank = 1700 of ranks = 2313  rank = 1800 of ranks = 2313  rank = 1900 of ranks = 2313  rank = 2000 of ranks = 2313  rank = 2100 of ranks = 2313  rank = 2200 of ranks = 2313  rank = 2300 of ranks = 2313 class_id = 0, name = pneumonia, 	 ap = 60.57 % 
+ for thresh = 0.25, precision = 0.77, recall = 0.07, F1-score = 0.13 
+ for thresh = 0.25, TP = 64, FP = 19, FN = 865, average IoU = 23.75 % 
+
+ average precision (AP) = 0.605720, or 60.57 % for IoU threshold = 0.010000 

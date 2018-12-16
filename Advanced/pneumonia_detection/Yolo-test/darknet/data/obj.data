@@ -1,0 +1,6 @@
+classes = 1
+train = /home/young/Documents/Kaggle/Yolo/metadata/train_list.txt
+valid = /home/young/Documents/Kaggle/Yolo/metadata/val_list.txt
+names = /home/young/Documents/Kaggle/Yolo/cfg/rsna.names
+backup = /home/young/Documents/Kaggle/Yolo/backup
+    
